@@ -6,14 +6,15 @@ import * as crypto from 'crypto';
 import { KafkaMessageDto } from 'src/dto/kafka-message.dto';
 
 
+
 @Injectable()
 export class BankRfService {
   constructor(
   ) {}
-
-  private readonly terminalKey = '1733308730324';
-  private readonly password = 'utCxkm5he8Plp6R#';
-  private readonly apiBaseUrl = 'https://rest-api-test.tinkoff.ru/v2';
+  ;
+  private readonly terminalKey = process.env.TERMINAL_KEY;
+  private readonly password = process.env.PASSWORD;
+  private readonly apiBaseUrl = process.env.TEST_URL;
 
   
  
@@ -43,7 +44,7 @@ export class BankRfService {
       order_id,
       transactionId,
     } = message;
-    console.log(message);
+    console.log(this.terminalKey);
   
     const initParams = {
       TerminalKey: this.terminalKey,
